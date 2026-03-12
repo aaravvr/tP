@@ -36,12 +36,16 @@ public class Parser {
             }
         }
         else if (commandWord.equals("filter")) {
+            String arguments = fullCommand.replace("filter", "").trim();
+
+            if (arguments.equals("clear")) {
+                return new FilterCommand(true);
+            }
             String[] parts = fullCommand.split(" s/", 2);
             if (parts.length < 2) {
-                throw new InternTrackrException("Invalid filter format. Use: filter s/STATUS");
+                throw new InternTrackrException("Invalid filter format. Use: filter s/STATUS or filter clear");
             }
             String statusValue = parts[1].replace("\"", "").trim();
-
             return new FilterCommand(statusValue);
         }
         return new ExitCommand();
