@@ -7,6 +7,9 @@ import seedu.interntrackr.storage.Storage;
 import seedu.interntrackr.ui.Ui;
 import seedu.interntrackr.exception.InternTrackrException;
 
+/**
+ * Initializes and runs the InternTrackr application.
+ */
 public class InternTrackr {
     private Storage storage;
     private ApplicationList applications;
@@ -23,17 +26,23 @@ public class InternTrackr {
         }
     }
 
+    /**
+     * Executes the main application loop until the user inputs the exit command.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
+                ui.showLine(); // Prints a divider before the output
                 Command c = Parser.parse(fullCommand);
                 c.execute(applications, ui, storage);
                 isExit = c.isExit();
             } catch (InternTrackrException e) {
                 ui.showError(e.getMessage());
+            } finally {
+                ui.showLine(); // Prints a divider after the output
             }
         }
     }

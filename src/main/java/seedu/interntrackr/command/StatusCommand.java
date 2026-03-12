@@ -1,5 +1,6 @@
 package seedu.interntrackr.command;
 
+import seedu.interntrackr.model.Application;
 import seedu.interntrackr.model.ApplicationList;
 import seedu.interntrackr.storage.Storage;
 import seedu.interntrackr.ui.Ui;
@@ -19,6 +20,16 @@ public class StatusCommand extends Command {
 
     @Override
     public void execute(ApplicationList applications, Ui ui, Storage storage) throws InternTrackrException {
-        // TODO: Update status of application, show UI message, save to storage
+        if (index < 1 || index > applications.getSize()) {
+            throw new InternTrackrException("Invalid application index.");
+        }
+
+        // ApplicationList.getApplication() already handles the 0-based index conversion
+        Application app = applications.getApplication(index);
+        app.setStatus(this.status);
+
+        ui.showMessage("Status updated! " + app.getCompany() + " is now marked as [" + this.status + "]");
+
+        storage.save(applications.getApplications());
     }
 }
