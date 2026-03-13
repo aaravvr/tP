@@ -1,12 +1,13 @@
 package seedu.interntrackr.command;
 
 import java.time.LocalDate;
+
+import seedu.interntrackr.exception.InternTrackrException;
 import seedu.interntrackr.model.Application;
 import seedu.interntrackr.model.ApplicationList;
 import seedu.interntrackr.model.Deadline;
 import seedu.interntrackr.storage.Storage;
 import seedu.interntrackr.ui.Ui;
-import seedu.interntrackr.exception.InternTrackrException;
 
 /**
  * Adds an application deadline to an internship.
@@ -36,7 +37,8 @@ public class DeadlineCommand extends Command {
         app.setDeadline(newDeadline);
 
         // Show UI message
-        ui.showMessage("Deadline updated! " + app.getCompany() + "'s " + app.getRole() + " 's " + this.deadlineType + " 's due date is now on the [" + this.dueDate + "]");
+        ui.showMessage("Deadline updated! " + app.getCompany() + "'s " + app.getRole()
+                + " 's " + this.deadlineType + " due date is now on the [" + this.dueDate + "]");
 
         // Save to storage
         storage.save(applications.getApplications());

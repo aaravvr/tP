@@ -14,7 +14,7 @@ public class Deadline {
      * Constructs a Deadline with the given category, dueDate.
      *
      * @param deadlineType The category of the deadline.
-     * @param dueDate  The due date of the deadline.
+     * @param dueDate      The due date of the deadline.
      */
     public Deadline(String deadlineType, LocalDate dueDate) {
         this.deadlineType = deadlineType;
@@ -26,8 +26,8 @@ public class Deadline {
      * Constructs a Deadline with the given deadlineType, dueDate, isDone.
      *
      * @param deadlineType The deadlineType of the deadline.
-     * @param dueDate  The due date of the deadline.
-     * @param isDone   The completeness of the deadline.
+     * @param dueDate      The due date of the deadline.
+     * @param isDone       The completeness of the deadline.
      */
     public Deadline(String deadlineType, LocalDate dueDate, boolean isDone) {
         this.deadlineType = deadlineType;
@@ -46,8 +46,6 @@ public class Deadline {
 
     /**
      * Sets the deadline as completed.
-     *
-     * @return The deadline's isDone field as true.
      */
     public void setDone() {
         this.isDone = true;
@@ -55,8 +53,6 @@ public class Deadline {
 
     /**
      * Sets the deadline as not completed.
-     *
-     * @return The deadline's isDone field as false.
      */
     public void setNotDone() {
         this.isDone = false;
