@@ -117,7 +117,9 @@ public class Parser {
         }
     }
 
-    private static String getDueDateStr(String subArgs, int dateIndex, String deadlineType) throws InternTrackrException {
+    private static String getDueDateStr(String subArgs, int dateIndex, String deadlineType)
+            throws InternTrackrException {
+
         String dueDateStr = subArgs.substring(dateIndex + 3).trim().replace("\"", "");
 
         int notesIndex = dueDateStr.indexOf(" n/");
