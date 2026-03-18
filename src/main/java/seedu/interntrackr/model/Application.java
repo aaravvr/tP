@@ -1,9 +1,13 @@
 package seedu.interntrackr.model;
 
+import java.util.logging.Logger;
+
 /**
  * Represents a single internship application.
  */
 public class Application {
+    private static final Logger logger = Logger.getLogger(Application.class.getName());
+
     private String company;
     private String role;
     private String status;
@@ -16,10 +20,13 @@ public class Application {
      * @param role    The role applied for.
      */
     public Application(String company, String role) {
+        assert company != null && !company.isEmpty() : "Company name cannot be null or empty";
+        assert role != null && !role.isEmpty() : "Role cannot be null or empty";
         this.company = company;
         this.role = role;
         this.status = "Applied";
         this.deadline = null;
+        logger.fine("Created application: " + company + " | " + role);
     }
 
     /**
@@ -30,10 +37,14 @@ public class Application {
      * @param status  The current application status.
      */
     public Application(String company, String role, String status) {
+        assert company != null && !company.isEmpty() : "Company name cannot be null or empty";
+        assert role != null && !role.isEmpty() : "Role cannot be null or empty";
+        assert status != null && !status.isEmpty() : "Status cannot be null or empty";
         this.company = company;
         this.role = role;
         this.status = status;
         this.deadline = null;
+        logger.fine("Created application: " + company + " | " + role + " | " + status);
     }
 
     /**
@@ -45,10 +56,14 @@ public class Application {
      * @param deadline The deadline of this application.
      */
     public Application(String company, String role, String status, Deadline deadline) {
+        assert company != null && !company.isEmpty() : "Company name cannot be null or empty";
+        assert role != null && !role.isEmpty() : "Role cannot be null or empty";
+        assert status != null && !status.isEmpty() : "Status cannot be null or empty";
         this.company = company;
         this.role = role;
         this.status = status;
         this.deadline = deadline;
+        logger.fine("Created application with deadline: " + company + " | " + role);
     }
 
     /**
@@ -84,6 +99,8 @@ public class Application {
      * @param status The new status.
      */
     public void setStatus(String status) {
+        assert status != null && !status.isEmpty() : "Status cannot be null or empty";
+        logger.fine("Updating status from " + this.status + " to " + status);
         this.status = status;
     }
 
