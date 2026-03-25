@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  */
 public class StatusCommand extends Command {
     private static final Logger logger = Logger.getLogger(StatusCommand.class.getName());
-    private final int index;
-    private final String status;
     private static final List<String> VALID_STATUSES = Arrays.asList(
             "Applied", "Pending", "Interview", "Offered", "Rejected", "Accepted"
     );
+    private final int index;
+    private final String status;
 
     public StatusCommand(int index, String status) {
         this.index = index;

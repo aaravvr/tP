@@ -8,10 +8,10 @@ import java.util.logging.Logger;
  * Represents a single internship application.
  */
 public class Application {
-    private static final Logger logger = Logger.getLogger(Application.class.getName());
     public static final List<String> VALID_STATUSES = Arrays.asList(
             "Applied", "Pending", "Interview", "Offered", "Rejected", "Accepted"
     );
+    private static final Logger logger = Logger.getLogger(Application.class.getName());
 
     private String company;
     private String role;
