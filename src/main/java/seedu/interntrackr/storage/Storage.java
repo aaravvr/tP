@@ -65,6 +65,7 @@ public class Storage {
                             + ": Invalid status '" + status + "'");
                 }
 
+                status = Application.getNormalizedStatus(status);
                 applications.add(new Application(parts[0], parts[1], status));
             }
         } catch (IOException e) {
