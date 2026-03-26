@@ -1,3 +1,4 @@
+//@@author eugenia-cnl-lee
 package seedu.interntrackr.model;
 
 import java.time.LocalDate;

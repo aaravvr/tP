@@ -1,3 +1,4 @@
+//@@author eugenia-cnl-lee
 package seedu.interntrackr.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
