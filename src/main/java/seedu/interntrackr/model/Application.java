@@ -175,6 +175,9 @@ public class Application {
      * @return A storage-formatted string.
      */
     public String toStorageString() {
-        return company + " | " + role + " | " + status + " | " + deadline;
+        if (deadline == null) {
+            return company + " | " + role + " | " + status;
+        }
+        return company + " | " + role + " | " + status + " | " + deadline.toStorageString();
     }
 }

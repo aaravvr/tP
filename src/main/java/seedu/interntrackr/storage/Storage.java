@@ -2,10 +2,13 @@ package seedu.interntrackr.storage;
 
 import seedu.interntrackr.exception.InternTrackrException;
 import seedu.interntrackr.model.Application;
+import seedu.interntrackr.model.Deadline;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -66,7 +69,26 @@ public class Storage {
                 }
 
                 status = Application.getNormalizedStatus(status);
-                applications.add(new Application(parts[0], parts[1], status));
+
+                // Load deadline if present (parts[3]=type, parts[4]=date, parts[5]=isDone)
+                if (parts.length == 6) {
+                    try {
+                        String deadlineType = parts[3].trim();
+                        LocalDate dueDate = LocalDate.parse(parts[4].trim());
+                        boolean isDone = Boolean.parseBoolean(parts[5].trim());
+                        Deadline deadline = new Deadline(deadlineType, dueDate, isDone);
+                        applications.add(new Application(parts[0], parts[1], status, deadline));
+                        logger.fine("Loaded application with deadline at line " + lineNumber);
+                    } catch (DateTimeParseException e) {
+                        logger.warning("Invalid deadline date at line " + lineNumber + ": " + parts[4]);
+                        throw new InternTrackrException("Corrupted deadline date at line "
+                                + lineNumber + ": " + parts[4]);
+                    }
+                } else {
+                    // No deadline — load as normal application
+                    applications.add(new Application(parts[0], parts[1], status));
+                    logger.fine("Loaded application without deadline at line " + lineNumber);
+                }
             }
         } catch (IOException e) {
             logger.severe("Failed to read file: " + e.getMessage());
