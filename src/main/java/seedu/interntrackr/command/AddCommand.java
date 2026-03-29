@@ -26,10 +26,10 @@ public class AddCommand extends Command {
      * @throws IllegalArgumentException If company or role is null or blank.
      */
     public AddCommand(String company, String role) {
-        if (company == null || company.isBlank()) {
+        if (company == null || company.trim().isEmpty()) {
             throw new IllegalArgumentException("Company name cannot be null or blank.");
         }
-        if (role == null || role.isBlank()) {
+        if (role == null || role.trim().isEmpty()) {
             throw new IllegalArgumentException("Role cannot be null or blank.");
         }
 
