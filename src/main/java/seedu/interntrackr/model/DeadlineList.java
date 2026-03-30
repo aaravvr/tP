@@ -5,9 +5,11 @@ import java.util.logging.Logger;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.interntrackr.exception.InternTrackrException;
+
 public class DeadlineList {
 
-    private static final Logger logger = Logger.getLogger(ApplicationList.class.getName());
+    private static final Logger logger = Logger.getLogger(DeadlineList.class.getName());
 
     private ArrayList<Deadline> deadlines;
 
@@ -55,5 +57,18 @@ public class DeadlineList {
      */
     public List<Deadline> getDeadlines() {
         return Collections.unmodifiableList(deadlines);
+    }
+
+    /**
+     * Returns a formatted string representation of the deadlines assigned to this application.
+     *
+     * @return A human-readable string representation of this list of deadlines.
+     */
+    @Override
+    public String toString() {
+        if (deadlines.isEmpty()) {
+            return "[]";
+        }
+        return deadlines.toString();
     }
 }

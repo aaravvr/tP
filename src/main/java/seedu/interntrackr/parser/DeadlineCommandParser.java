@@ -21,6 +21,11 @@ public class DeadlineCommandParser {
     private static final String PREFIX_NOTES = " n/";
     private static final String DATE_FORMAT = "dd-MM-yyyy";
 
+    private static final String DEADLINE_ADD_USAGE =
+            "Invalid format. Usage: deadline add INDEX t/TYPE d/DD-MM-YYYY [n/NOTES]";
+    private static final String DEADLINE_LIST_USAGE =
+            "Invalid format. Usage: deadline list INDEX";
+
     /**
      * Parses the given arguments and returns the corresponding deadline command.
      *
@@ -52,8 +57,7 @@ public class DeadlineCommandParser {
     private static DeadlineAddCommand parseAddCommand(String arguments) throws InternTrackrException {
         if (!arguments.contains(PREFIX_TYPE) || !arguments.contains(PREFIX_DATE)) {
             logger.warning("Deadline add command missing t/ or d/ parameter.");
-            throw new InternTrackrException(
-                    "Invalid format. Usage: deadline add INDEX t/TYPE d/DD-MM-YYYY [n/NOTES]");
+            throw new InternTrackrException(DEADLINE_ADD_USAGE);
         }
 
         try {
@@ -62,8 +66,7 @@ public class DeadlineCommandParser {
 
             if (typeIndex == -1 || dateIndex == -1 || typeIndex > dateIndex) {
                 logger.warning("Deadline add command has incorrect parameter ordering.");
-                throw new InternTrackrException(
-                        "Invalid format. Usage: deadline add INDEX t/TYPE d/DD-MM-YYYY");
+                throw new InternTrackrException(DEADLINE_ADD_USAGE);
             }
 
             int index = Integer.parseInt(arguments.substring(0, typeIndex).trim());
@@ -88,7 +91,7 @@ public class DeadlineCommandParser {
 
     private static DeadlineListCommand parseListCommand(String arguments) throws InternTrackrException {
         if (arguments.isBlank()) {
-            throw new InternTrackrException("Invalid format. Usage: deadline list INDEX");
+            throw new InternTrackrException(DEADLINE_LIST_USAGE);
         }
 
         try {
