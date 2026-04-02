@@ -2,6 +2,10 @@ ____________________________________________________________
 Welcome to InternTrackr! Ready to hunt for some internships?
 ____________________________________________________________
 ____________________________________________________________
+Need help? You can view the full User Guide with all commands here:
+https://ay2526s2-cs2113-t14-1.github.io/tp/UserGuide.html
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this application:
   Company: Google | Role: Software Engineer | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 Now you have 1 application(s) in the list.
@@ -207,6 +211,32 @@ Salary logged: $8500.50
 Google status auto-updated from [Applied] to [Offered].
 ____________________________________________________________
 ____________________________________________________________
+Error: Invalid format. Usage: archive INDEX
+____________________________________________________________
+____________________________________________________________
+Error: The application index must be a number.
+____________________________________________________________
+____________________________________________________________
+Error: Invalid application index. Please provide a valid number.
+____________________________________________________________
+____________________________________________________________
+Got it. I've archived this application:
+  Company: Google | Role: Software Engineer | Status: Offered | Salary: $8500.50 | Contact Name: John Doe | Contact Email: john@google.com | Deadlines: [Deadline Type: Online Assessment | Due Date: 2026-12-12 | Done: [ ], Deadline Type: Technical Interview | Due Date: 2026-12-18 | Done: [ ]]
+It will no longer appear in the default list. Use 'list archive' to view it.
+____________________________________________________________
+____________________________________________________________
+Error: This application is already archived.
+____________________________________________________________
+____________________________________________________________
+Here are your internship applications:
+2. Company: Meta | Role: Data Scientist | Status: Pending | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+3. Company: Apple | Role: Product Manager | Status: Interview | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+4. Company: Amazon | Role: Backend Intern | Status: Rejected | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+5. Company: Netflix | Role: Frontend Intern | Status: Accepted | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+6. Company: Tesla | Role: Hardware Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+7. Company: Microsoft | Role: Cloud Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+____________________________________________________________
+____________________________________________________________
 Overview:
 You are currently tracking 7 application(s).
 Status Breakdown:
@@ -250,8 +280,6 @@ Note updated for: Google | Software Engineer
 ____________________________________________________________
 ____________________________________________________________
 Here are your internship applications:
-1. Company: Google | Role: Software Engineer | Status: Offered | Salary: $8500.50 | Contact Name: John Doe | Contact Email: john@google.com | Deadlines: [Deadline Type: Online Assessment | Due Date: 2026-12-12 | Done: [ ], Deadline Type: Technical Interview | Due Date: 2026-12-18 | Done: [ ]]
-   Note: Strong Java skills required
 2. Company: Apple | Role: Product Manager | Status: Interview | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 3. Company: Amazon | Role: Backend Intern | Status: Rejected | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 4. Company: Netflix | Role: Frontend Intern | Status: Accepted | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
