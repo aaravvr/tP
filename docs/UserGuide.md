@@ -104,6 +104,19 @@ To clear the filter:
 
 **Format:** `filter clear`
 
+### Finding applications : `find`
+
+Finds applications whose company name or role contains the specified keyword.
+
+**Format:** `find KEYWORD`
+
+* The search is case-insensitive.
+* Both the company name and the role are searched.
+
+**Examples:**
+* `find Shopee`
+* `find "Software Engineer"`
+
 ### Adding a deadline : `deadline add`
 
 Adds an important date linked to an application (deadline, submission date, offer expiry).
