@@ -12,13 +12,32 @@ Got it. I've added this application:
 Now you have 2 application(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Got it. I've added this application:
+  Company: Apple | Role: Product Manager | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 3 application(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this application:
+  Company: Amazon | Role: Backend Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 4 application(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this application:
+  Company: Netflix | Role: Frontend Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 5 application(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this application:
+  Company: Tesla | Role: Hardware Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 6 application(s) in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this application:
+  Company: Microsoft | Role: Cloud Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 7 application(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Error: I'm sorry, but I don't know what that command means :-(
-____________________________________________________________
-____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: add c/COMPANY r/ROLE
@@ -33,16 +52,24 @@ ____________________________________________________________
 You have already tracked an application for Software Engineer at Google.
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Here are your internship applications:
+1. Company: Google | Role: Software Engineer | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+2. Company: Meta | Role: Data Scientist | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+3. Company: Apple | Role: Product Manager | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+4. Company: Amazon | Role: Backend Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+5. Company: Netflix | Role: Frontend Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+6. Company: Tesla | Role: Hardware Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+7. Company: Microsoft | Role: Cloud Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 ____________________________________________________________
 ____________________________________________________________
 Error: The find command requires a keyword! (e.g., find Google)
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Here are the matching applications in your list:
+1. Company: Google | Role: Software Engineer | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 ____________________________________________________________
 ____________________________________________________________
-Error: Invalid format. Usage: status INDEX s/STATUS
+No matching applications found.
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: status INDEX s/STATUS
@@ -51,7 +78,7 @@ ____________________________________________________________
 Error: The application index must be a number.
 ____________________________________________________________
 ____________________________________________________________
-Error: Invalid application index. Please provide a number between 1 and 2
+Error: Invalid application index. Please provide a number between 1 and 7
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid status assigned. Please use one of the following:
@@ -63,7 +90,16 @@ Rejected
 Accepted
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Status updated! Meta is now marked as [Pending]
+____________________________________________________________
+____________________________________________________________
+Status updated! Apple is now marked as [Interview]
+____________________________________________________________
+____________________________________________________________
+Status updated! Amazon is now marked as [Rejected]
+____________________________________________________________
+____________________________________________________________
+Status updated! Netflix is now marked as [Accepted]
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: filter s/STATUS or filter clear
@@ -81,7 +117,33 @@ Rejected
 Accepted
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Here are the applications with status: Interview
+3. Company: Apple | Role: Product Manager | Status: Interview | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+____________________________________________________________
+____________________________________________________________
+Filter cleared. Showing all applications:
+1. Company: Google | Role: Software Engineer | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+2. Company: Meta | Role: Data Scientist | Status: Pending | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+3. Company: Apple | Role: Product Manager | Status: Interview | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+4. Company: Amazon | Role: Backend Intern | Status: Rejected | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+5. Company: Netflix | Role: Frontend Intern | Status: Accepted | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+6. Company: Tesla | Role: Hardware Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+7. Company: Microsoft | Role: Cloud Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+____________________________________________________________
+____________________________________________________________
+Error: Invalid format. Usage: contact INDEX c/NAME e/EMAIL
+____________________________________________________________
+____________________________________________________________
+Error: Invalid format. Usage: contact INDEX c/NAME e/EMAIL
+____________________________________________________________
+____________________________________________________________
+Error: Invalid format. Usage: contact INDEX c/NAME e/EMAIL
+____________________________________________________________
+____________________________________________________________
+Contact details updated for Google | Software Engineer: John Doe | john@google.com
+____________________________________________________________
+____________________________________________________________
+Error: Invalid application index.
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: deadline add INDEX t/TYPE d/DD-MM-YYYY [n/NOTES]
@@ -105,10 +167,24 @@ ____________________________________________________________
 Error: Invalid date format. Use DD-MM-YYYY.
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Deadline updated! Google's Software Engineer's Online Assessment due date is now on the [2026-12-12]
 ____________________________________________________________
 ____________________________________________________________
-Error: Invalid format! Use: offer INDEX s/[SALARY]
+Deadline updated! Google's Software Engineer's Technical Interview due date is now on the [2026-12-18]
+____________________________________________________________
+____________________________________________________________
+Error: Invalid format. Usage: deadline list INDEX
+____________________________________________________________
+____________________________________________________________
+Error: The application index must be a number.
+____________________________________________________________
+____________________________________________________________
+Error: Invalid application index.
+____________________________________________________________
+____________________________________________________________
+Here are the deadlines for this application:
+1. Deadline Type: Online Assessment | Due Date: 2026-12-12 | Done: [ ]
+2. Deadline Type: Technical Interview | Due Date: 2026-12-18 | Done: [ ]
 ____________________________________________________________
 ____________________________________________________________
 Error: Please specify the salary using the 's/' prefix. Example: offer 1 s/5000
@@ -117,7 +193,7 @@ ____________________________________________________________
 Error: Index and salary must be valid numerical values.
 ____________________________________________________________
 ____________________________________________________________
-Error: Invalid application index. Please provide a number between 1 and 2
+Error: Invalid application index. Please provide a number between 1 and 7
 ____________________________________________________________
 ____________________________________________________________
 Error: Index and salary must be valid numerical values.
@@ -126,7 +202,21 @@ ____________________________________________________________
 Error: Salary cannot be negative.
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Offer updated successfully!
+Salary logged: $8500.50
+Google status auto-updated from [Applied] to [Offered].
+____________________________________________________________
+____________________________________________________________
+Overview:
+You are currently tracking 7 application(s).
+Status Breakdown:
+ - Applied: 2
+ - Pending: 1
+ - Interview: 1
+ - Offered: 1
+ - Rejected: 1
+ - Accepted: 1
+Keep up the momentum!
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: delete INDEX
@@ -138,7 +228,9 @@ ____________________________________________________________
 Error: Invalid application index. Please provide a valid number.
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Noted. I've removed this application:
+  Company: Meta | Role: Data Scientist | Status: Pending | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+Now you have 6 application(s) in the list.
 ____________________________________________________________
 ____________________________________________________________
 Error: Invalid format. Usage: note INDEX n/NOTE_CONTENT
@@ -150,7 +242,7 @@ ____________________________________________________________
 Error: Index must be a valid number. Usage: note INDEX n/NOTE_CONTENT
 ____________________________________________________________
 ____________________________________________________________
-Error: Invalid index: 99. Please enter a number between 1 and 2.
+Error: Invalid index: 99. Please enter a number between 1 and 6.
 ____________________________________________________________
 ____________________________________________________________
 Note updated for: Google | Software Engineer
@@ -158,12 +250,13 @@ Note updated for: Google | Software Engineer
 ____________________________________________________________
 ____________________________________________________________
 Here are your internship applications:
-1. Company: Google | Role: Software Engineer | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+1. Company: Google | Role: Software Engineer | Status: Offered | Salary: $8500.50 | Contact Name: John Doe | Contact Email: john@google.com | Deadlines: [Deadline Type: Online Assessment | Due Date: 2026-12-12 | Done: [ ], Deadline Type: Technical Interview | Due Date: 2026-12-18 | Done: [ ]]
    Note: Strong Java skills required
-2. Company: Meta | Role: Data Scientist | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
-____________________________________________________________
-____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+2. Company: Apple | Role: Product Manager | Status: Interview | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+3. Company: Amazon | Role: Backend Intern | Status: Rejected | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+4. Company: Netflix | Role: Frontend Intern | Status: Accepted | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+5. Company: Tesla | Role: Hardware Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
+6. Company: Microsoft | Role: Cloud Intern | Status: Applied | Salary: - | Contact Name: - | Contact Email: - | Deadlines: null
 ____________________________________________________________
 ____________________________________________________________
 Are you sure you want to clear all data? Type 'yes' to confirm:
@@ -173,7 +266,15 @@ ____________________________________________________________
 Error: I'm sorry, but I don't know what that command means :-(
 ____________________________________________________________
 ____________________________________________________________
-Error: Input cannot be empty. Please enter a command.
+Are you sure you want to clear all data? Type 'yes' to confirm:
+All data has been cleared.
+____________________________________________________________
+____________________________________________________________
+Overview:
+You haven't tracked any applications yet. Start adding some!
+____________________________________________________________
+____________________________________________________________
+No applications found. Start adding some!
 ____________________________________________________________
 ____________________________________________________________
 Bye! Good luck with your internship hunt.

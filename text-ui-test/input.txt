@@ -1,25 +1,37 @@
 add c/Google r/Software Engineer
 add c/Meta r/Data Scientist
-
+add c/Apple r/Product Manager
+add c/Amazon r/Backend Intern
+add c/Netflix r/Frontend Intern
+add c/Tesla r/Hardware Intern
+add c/Microsoft r/Cloud Intern
 gibberish command
-
 add
 add c/Apple
 add r/Product Manager
 add c/Google r/Software Engineer
-
+list
 find
-
-status
+find Google
+find TikTok
 status 1
 status abc s/Interview
 status 99 s/Interview
 status 1 s/Ghosted
-
+status 2 s/Pending
+status 3 s/Interview
+status 4 s/Rejected
+status 5 s/Accepted
 filter
 filter Ghosted
 filter s/Ghosted
-
+filter s/Interview
+filter clear
+contact
+contact 1 c/John
+contact 1 e/john@google.com
+contact 1 c/John Doe e/john@google.com
+contact 99 c/Jane e/jane@apple.com
 deadline
 deadline add
 deadline add abc t/OA d/12-12-2026
@@ -27,27 +39,34 @@ deadline add 99 t/OA d/12-12-2026
 deadline add 1 t/OA
 deadline add 1 d/12-12-2026
 deadline add 1 t/OA d/tomorrow
-
-offer
+deadline add 1 t/Online Assessment d/12-12-2026
+deadline add 1 t/Technical Interview d/18-12-2026 n/Review DP
+deadline list
+deadline list abc
+deadline list 99
+deadline list 1
 offer 1
 offer abc s/5000
 offer 99 s/5000
 offer 1 s/five-thousand
 offer 1 s/-500
-
+offer 1 s/8500.50
+overview
 delete
 delete abc
 delete 99
-
+delete 2
 note
 note 1
 note abc n/Strong Java skills required
 note 99 n/Strong Java skills required
 note 1 n/Strong Java skills required
 list
-
 clear
 idk
 no
-
+clear
+yes
+overview
+list
 exit
