@@ -200,7 +200,7 @@ ____________________________________________________________
 Error: Invalid application index. Please provide a number between 1 and 7
 ____________________________________________________________
 ____________________________________________________________
-Error: Index and salary must be valid numerical values.
+Error: Salary must be entered as a decimal number, not scientific notation.
 ____________________________________________________________
 ____________________________________________________________
 Error: Salary cannot be negative.

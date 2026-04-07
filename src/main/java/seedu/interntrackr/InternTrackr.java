@@ -98,12 +98,37 @@ public class InternTrackr {
     }
 
     /**
+     * Configures the root logger based on the provided flag.
+     *
+     * @param isLoggingEnabled true to enable logging, false to turn it off.
+     */
+    private static void setupLogging(boolean isLoggingEnabled) {
+        Logger rootLogger = Logger.getLogger("");
+        if (isLoggingEnabled) {
+            rootLogger.setLevel(Level.INFO);
+        } else {
+            rootLogger.setLevel(Level.OFF);
+        }
+    }
+
+    /**
      * Entry point for the InternTrackr application.
      * Creates an instance with the default data file path and starts the main loop.
      *
-     * @param args Command-line arguments (not used).
+     * @param args Command-line arguments. Use "--enable-logging" to turn on logs.
      */
     public static void main(String[] args) {
+        boolean isLoggingEnabled = false;
+
+        for (String arg : args) {
+            if (arg.equals("--enable-logging")) {
+                isLoggingEnabled = true;
+                break;
+            }
+        }
+
+        setupLogging(isLoggingEnabled);
+
         logger.info("Application starting.");
         new InternTrackr("data/interntrackr.txt").run();
     }

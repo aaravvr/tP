@@ -5,13 +5,15 @@ InternTrackr is a CLI-first internship application manager for university studen
 ## Quick Start
 
 1. Ensure you have **Java 17** or above installed.
-2. Download the latest `internTrackr.jar`.
-3. Copy the jar file into the folder you want to use as the home folder for InternTrackr.
+2. Download the latest `interntrackr.jar`.
+3. Copy the jar file into the folder you want to use as the home folder for Interntrackr.
 4. Open a terminal, `cd` into that folder, and run:
 
    ```
    java -jar internTrackr.jar
    ```
+
+   *(Optional: If you need to troubleshoot and view debug logs, append the logging flag: `java -jar internTrackr.jar --enable-logging`)*
 
 5. Type commands and press Enter to execute.
 
@@ -38,7 +40,8 @@ Refer to the [Features](#features) section below for details.
 > - Parameters can be in any order unless stated otherwise.
 > - For fields containing spaces, wrap them in quotes `"..."`.
 > - Dates use the format `DD-MM-YYYY`.
-> - Extra parameters for commands that do not take parameters (such as `help`, `list`, `overview`, `exit`) will be ignored.
+> - **CRITICAL:** Do not use the pipe character (`|`) anywhere in your inputs. It is strictly prohibited and will cause an error.
+> - Extra parameters for commands that do not take parameters (such as `help`, `overview`, `exit`) will be ignored.
 
 ### Viewing help : `help`
 
@@ -110,14 +113,15 @@ Updates the status of an existing application.
 
 Updates an application with an offered salary and automatically changes its status to "Offered".
 
-**Format:** `offer INDEX SALARY`
+**Format:** `offer INDEX s/SALARY`
 
 - Updates the application at the given `INDEX`.
-- Logs the `SALARY` for compensation tracking.
+- Logs the `SALARY` for compensation tracking (must not contain more than 2 decimal places).
 
-**Example:**
-- `offer 1 5000.00`
-- `offer 2 4500`
+**Examples:**
+
+- `offer 1 s/5000.00`
+- `offer 2 s/4500`
 
 ### Archiving an application : `archive`
 
@@ -167,8 +171,6 @@ Links recruiter or networking details to a specific internship application.
 
 - `contact 1 c/"John Doe" e/"john.doe@example.com"`
 - `contact 3 c/"Jane Smith HR" e/"jane.smith@shopee.com"`
-
-**Format:** `contact INDEX c/NAME e/EMAIL`
 
 ### Adding a note : `note`
 
@@ -296,7 +298,7 @@ InternTrackr data is stored as a file in the home folder (for example, under a `
 | Find applications          | `find KEYWORD`                               | `find Shopee`                                                         |
 | Delete application         | `delete INDEX`                               | `delete 2`                                                            |
 | Update status              | `status INDEX s/STATUS`                      | `status 1 s/"Interview"`                                              |
-| Log an offer               | `offer INDEX SALARY`                         | `offer 1 5000.00`                                                     |
+| Log an offer               | `offer INDEX s/SALARY`                       | `offer 1 s/5000.00`                                                   |
 | Archive application        | `archive INDEX`                              | `archive 1`                                                           |
 | Add contact                | `contact INDEX c/NAME e/EMAIL`               | `contact 1 c/"John Doe" e/"john.doe@example.com"`                     |
 | Add note                   | `note INDEX n/NOTE_CONTENT`                  | `note 1 n/"Remember to review OOP concepts"`                          |

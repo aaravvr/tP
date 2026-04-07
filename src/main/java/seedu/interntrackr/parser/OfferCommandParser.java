@@ -35,10 +35,32 @@ public class OfferCommandParser {
 
         try {
             int index = Integer.parseInt(parts[0].trim());
-            double salary = Double.parseDouble(parts[1].trim());
+            String salaryStr = parts[1].trim();
+
+            if (index <= 0) {
+                logger.warning("Index must be positive, got: " + index);
+                throw new InternTrackrException("Application index must be a positive integer (1 or higher).");
+            }
+
+            if (salaryStr.toLowerCase().contains("e")) {
+                logger.warning("Salary input contains scientific notation: " + salaryStr);
+                throw new InternTrackrException("Salary must be entered as a decimal number, not scientific notation.");
+            }
+
+            int dotIndex = salaryStr.indexOf('.');
+            if (dotIndex != -1 && salaryStr.length() - dotIndex - 1 > 2) {
+                logger.warning("Salary input contains more than 2 decimal places.");
+                throw new InternTrackrException("Salary cannot have more than 2 decimal places.");
+            }
+
+            double salary = Double.parseDouble(salaryStr);
 
             if (salary < 0) {
                 throw new InternTrackrException("Salary cannot be negative.");
+            }
+
+            if (salary > 10_000_000) {
+                throw new InternTrackrException("Salary must be a reasonable amount (max 10,000,000).");
             }
 
             return new OfferCommand(index, salary);
