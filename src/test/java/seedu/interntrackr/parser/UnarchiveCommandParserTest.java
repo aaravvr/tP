@@ -20,6 +20,11 @@ public class UnarchiveCommandParserTest {
     }
 
     @Test
+    public void parse_whitespacePaddedIndex_returnsUnarchiveCommand() throws InternTrackrException {
+        assertTrue(UnarchiveCommandParser.parse("  2  ") instanceof UnarchiveCommand);
+    }
+
+    @Test
     public void parse_missingIndex_throwsInternTrackrException() {
         assertThrows(InternTrackrException.class, () -> UnarchiveCommandParser.parse(""));
     }
@@ -27,5 +32,20 @@ public class UnarchiveCommandParserTest {
     @Test
     public void parse_nonNumericIndex_throwsInternTrackrException() {
         assertThrows(InternTrackrException.class, () -> UnarchiveCommandParser.parse("abc"));
+    }
+
+    @Test
+    public void parse_zeroIndex_throwsInternTrackrException() {
+        assertThrows(InternTrackrException.class, () -> UnarchiveCommandParser.parse("0"));
+    }
+
+    @Test
+    public void parse_negativeIndex_throwsInternTrackrException() {
+        assertThrows(InternTrackrException.class, () -> UnarchiveCommandParser.parse("-1"));
+    }
+
+    @Test
+    public void parse_decimalIndex_throwsInternTrackrException() {
+        assertThrows(InternTrackrException.class, () -> UnarchiveCommandParser.parse("1.5"));
     }
 }

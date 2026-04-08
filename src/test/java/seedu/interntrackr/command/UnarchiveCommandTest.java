@@ -23,11 +23,11 @@ public class UnarchiveCommandTest {
 
         new UnarchiveCommand(1).execute(applications, new Ui(), storage);
 
-        assertFalse(applications.getApplication(1).isArchived());
+        assertFalse(applications.getActiveApplication(1).isArchived());
     }
 
     @Test
-    public void execute_unarchiveRestorestoActiveList() throws InternTrackrException {
+    public void execute_unarchive_applicationRestoredToActiveList() throws InternTrackrException {
         ApplicationList applications = new ApplicationList();
         Application archived = new Application("Google", "SWE");
         archived.setArchived(true);
@@ -37,7 +37,7 @@ public class UnarchiveCommandTest {
 
         new UnarchiveCommand(1).execute(applications, new Ui(), storage);
 
-        assertFalse(applications.getApplication(1).isArchived());
+        assertFalse(applications.getActiveApplication(1).isArchived());
     }
 
     @Test
@@ -50,6 +50,42 @@ public class UnarchiveCommandTest {
 
         assertThrows(InternTrackrException.class,
                 () -> new UnarchiveCommand(5).execute(applications, new Ui(), storage));
+    }
+
+    @Test
+    public void execute_nullApplicationList_throwsAssertionError() {
+        Storage storage = new Storage("data/test_unarchive.txt");
+
+        assertThrows(AssertionError.class,
+                () -> new UnarchiveCommand(1).execute(null, new Ui(), storage));
+    }
+
+    @Test
+    public void execute_nullUi_throwsAssertionError() throws InternTrackrException {
+        ApplicationList applications = new ApplicationList();
+        Application app = new Application("Google", "SWE");
+        app.setArchived(true);
+        applications.addApplication(app);
+        Storage storage = new Storage("data/test_unarchive.txt");
+
+        assertThrows(AssertionError.class,
+                () -> new UnarchiveCommand(1).execute(applications, null, storage));
+    }
+
+    @Test
+    public void execute_nullStorage_throwsAssertionError() throws InternTrackrException {
+        ApplicationList applications = new ApplicationList();
+        Application app = new Application("Google", "SWE");
+        app.setArchived(true);
+        applications.addApplication(app);
+
+        assertThrows(AssertionError.class,
+                () -> new UnarchiveCommand(1).execute(applications, new Ui(), null));
+    }
+
+    @Test
+    public void constructor_zeroIndex_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new UnarchiveCommand(0));
     }
 
     @Test

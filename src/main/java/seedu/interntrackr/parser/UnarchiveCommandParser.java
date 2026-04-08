@@ -1,9 +1,9 @@
 package seedu.interntrackr.parser;
 
-import java.util.logging.Logger;
-
 import seedu.interntrackr.command.UnarchiveCommand;
 import seedu.interntrackr.exception.InternTrackrException;
+
+import java.util.logging.Logger;
 
 /**
  * Parses user input arguments for the unarchive command.
