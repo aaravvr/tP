@@ -63,6 +63,8 @@ public class Parser {
             return NoteCommandParser.parse(arguments);
         case "archive":
             return ArchiveCommandParser.parse(arguments);
+        case "unarchive":
+            return UnarchiveCommandParser.parse(arguments);
         case "help":
             logger.fine("Parsed: HelpCommand");
             return new HelpCommand();

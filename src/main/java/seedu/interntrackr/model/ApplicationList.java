@@ -1,11 +1,11 @@
 package seedu.interntrackr.model;
 
-import seedu.interntrackr.exception.InternTrackrException;
-
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.interntrackr.exception.InternTrackrException;
 
 /**
  * Manages the in-memory list of internship applications.
@@ -101,6 +101,52 @@ public class ApplicationList {
         logger.warning("Invalid active display index: " + displayIndex + ". Active count: " + totalActive);
         throw new InternTrackrException("Invalid application index. Please provide a number between 1 and "
                 + totalActive + ".");
+    }
+
+    /**
+     * Returns the application corresponding to the given 1-based display index
+     * among only the archived entries.
+     *
+     * <p>The {@code unarchive} command should use this method so that the index
+     * the user provides always matches what they see in the output of
+     * {@code list archive}.</p>
+     *
+     * @param displayIndex The 1-based index as shown in the {@code list archive} output.
+     * @return The matching archived Application object.
+     * @throws InternTrackrException If the display index is out of range.
+     */
+    public Application getArchivedApplication(int displayIndex) throws InternTrackrException {
+        int archivedCount = 0;
+        for (Application app : applications) {
+            if (app.isArchived()) {
+                archivedCount++;
+                if (archivedCount == displayIndex) {
+                    return app;
+                }
+            }
+        }
+        int totalArchived = countArchived();
+        logger.warning("Invalid archived display index: " + displayIndex + ". Archived count: " + totalArchived);
+        if (totalArchived == 0) {
+            throw new InternTrackrException("There are no archived applications to unarchive.");
+        }
+        throw new InternTrackrException("Invalid application index. Please provide a number between 1 and "
+                + totalArchived + ".");
+    }
+
+    /**
+     * Returns the number of archived applications in the list.
+     *
+     * @return The number of archived applications.
+     */
+    public int countArchived() {
+        int count = 0;
+        for (Application app : applications) {
+            if (app.isArchived()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
