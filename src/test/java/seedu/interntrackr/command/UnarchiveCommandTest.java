@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UnarchiveCommandTest {
 
     @Test
-    public void execute_validIndex_applicationIsUnarchived() throws InternTrackrException {
+    public void execute_singleArchivedApp_applicationIsUnarchived() throws InternTrackrException {
         ApplicationList applications = new ApplicationList();
         Application app = new Application("Google", "SWE");
         app.setArchived(true);
@@ -23,21 +23,24 @@ public class UnarchiveCommandTest {
 
         new UnarchiveCommand(1).execute(applications, new Ui(), storage);
 
-        assertFalse(applications.getActiveApplication(1).isArchived());
+        assertFalse(app.isArchived());
     }
 
     @Test
-    public void execute_unarchive_applicationRestoredToActiveList() throws InternTrackrException {
+    public void execute_archivedAppAmongMixed_correctAppRestoredToActiveList() throws InternTrackrException {
         ApplicationList applications = new ApplicationList();
         Application archived = new Application("Google", "SWE");
         archived.setArchived(true);
+        Application active = new Application("Meta", "Backend");
         applications.addApplication(archived);
-        applications.addApplication(new Application("Meta", "Backend"));
+        applications.addApplication(active);
         Storage storage = new Storage("data/test_unarchive.txt");
 
         new UnarchiveCommand(1).execute(applications, new Ui(), storage);
 
-        assertFalse(applications.getActiveApplication(1).isArchived());
+        assertFalse(archived.isArchived());
+        assertFalse(active.isArchived());
+        assertTrue(applications.countActive() == 2);
     }
 
     @Test
@@ -50,6 +53,15 @@ public class UnarchiveCommandTest {
 
         assertThrows(InternTrackrException.class,
                 () -> new UnarchiveCommand(5).execute(applications, new Ui(), storage));
+    }
+
+    @Test
+    public void execute_emptyArchiveList_throwsInternTrackrException() {
+        ApplicationList applications = new ApplicationList();
+        Storage storage = new Storage("data/test_unarchive.txt");
+
+        assertThrows(InternTrackrException.class,
+                () -> new UnarchiveCommand(1).execute(applications, new Ui(), storage));
     }
 
     @Test

@@ -1,12 +1,12 @@
 package seedu.interntrackr.command;
 
+import java.util.logging.Logger;
+
 import seedu.interntrackr.exception.InternTrackrException;
 import seedu.interntrackr.model.Application;
 import seedu.interntrackr.model.ApplicationList;
 import seedu.interntrackr.storage.Storage;
 import seedu.interntrackr.ui.Ui;
-
-import java.util.logging.Logger;
 
 /**
  * Restores an archived internship application back to the active list.

@@ -1,11 +1,11 @@
 package seedu.interntrackr.model;
 
-import seedu.interntrackr.exception.InternTrackrException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
+
+import seedu.interntrackr.exception.InternTrackrException;
 
 /**
  * Manages the in-memory list of internship applications.
@@ -127,6 +127,9 @@ public class ApplicationList {
         }
         int totalArchived = countArchived();
         logger.warning("Invalid archived display index: " + displayIndex + ". Archived count: " + totalArchived);
+        if (totalArchived == 0) {
+            throw new InternTrackrException("There are no archived applications to unarchive.");
+        }
         throw new InternTrackrException("Invalid application index. Please provide a number between 1 and "
                 + totalArchived + ".");
     }
