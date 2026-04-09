@@ -1,0 +1,34 @@
+@startuml
+object "c:FilterCommand" as FC {
+    status = "Applied"
+}
+
+object ":ApplicationList" as AL {
+}
+
+object "app1:Application" as A1 {
+    company = "Google"
+    role = "SWE Intern"
+    status = "Applied"
+    isArchived = false
+}
+
+object "app2:Application" as A2 {
+    company = "Meta"
+    role = "Frontend Intern"
+    status = "Interview"
+    isArchived = false
+}
+
+object "app3:Application" as A3 {
+    company = "Amazon"
+    role = "SRE Intern"
+    status = "Applied"
+    isArchived = true
+}
+
+AL o-- A1
+AL o-- A2
+AL o-- A3
+FC ..> AL : iterates through >
+@enduml

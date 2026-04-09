@@ -6,9 +6,6 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
----
 <!-- @@author N-SANJAI -->
 ### Application Architecture, Overview, Offer, Contact, and Help Features
 
