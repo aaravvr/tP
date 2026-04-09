@@ -1,27 +1,11 @@
 @startuml
-actor User
-participant ":InternTrackr" as IT
-participant ":Parser" as P
-participant "c:FindCommand" as FC
+hide footbox
+participant ":FilterCommand" as FC
 participant ":ApplicationList" as AL
 participant "app:Application" as App
 participant ":Ui" as UI
 
-User -> IT : "find Shopee"
-activate IT
-IT -> P : parseCommand("find Shopee")
-activate P
-
-create FC
-P -> FC : FindCommand("Shopee")
-activate FC
-FC --> P : c
-deactivate FC
-
-P --> IT : c
-deactivate P
-
-IT -> FC : execute(applications, ui, storage)
+[-> FC : execute(applications, ui, storage)
 activate FC
 
 FC -> AL : getSize()
@@ -35,27 +19,13 @@ loop for each application (1 to size)
     AL --> FC : app
     deactivate AL
 
-    FC -> App : isArchived()
-    activate App
-    App --> FC : false
-    deactivate App
-
-    alt application contains keyword
-        FC -> UI : showMessage(...)
+    alt status matches searchStatus AND NOT isArchived
+        FC -> UI : showMessage(app.toString())
         activate UI
         UI --> FC
         deactivate UI
     end
 end
-
-alt no matches found
-    FC -> UI : showMessage("No matching applications found.")
-    activate UI
-    UI --> FC
-    deactivate UI
-end
-
+[<-- FC
 deactivate FC
-IT --> User
-deactivate IT
 @enduml

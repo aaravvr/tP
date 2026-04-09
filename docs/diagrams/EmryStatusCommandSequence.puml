@@ -1,26 +1,37 @@
 @startuml
-actor User
 participant ":InternTrackr" as IT
-participant ":Parser" as P
 participant "c:StatusCommand" as SC
 participant ":ApplicationList" as AL
 participant "app:Application" as A
 participant ":Ui" as UI
 participant ":Storage" as S
 
-User -> IT : "status 1 Offered"
-IT -> P : parse("status 1 Offered")
-create SC
-P -> SC : StatusCommand(1, "Offered")
-P --> IT : c
-IT -> SC : execute(applications, ui, storage)
+[-> IT : executeCommand()
+activate IT
 
-SC -> AL : getApplication(1)
+IT -> SC : execute(applications, ui, storage)
+activate SC
+
+SC -> AL : getApplication(index)
+activate AL
 AL --> SC : app
-SC -> A : setStatus("Offered")
-SC -> UI : showMessage("Status updated!...")
+deactivate AL
+
+SC -> A : setStatus(newStatus)
+activate A
+deactivate A
+
+SC -> UI : showMessage("Status updated!")
+activate UI
+UI --> SC
+deactivate UI
 
 SC -> S : save(applications)
+activate S
 S --> SC
-IT -> UI : showLine()
+deactivate S
+
+deactivate SC
+[<-- IT
+deactivate IT
 @enduml

@@ -6,9 +6,6 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
----
 <!-- @@author N-SANJAI -->
 ### Application Architecture, Overview, Offer, Contact, and Help Features
 
@@ -392,7 +389,7 @@ The `filter` feature allows users to navigate large lists of applications by iso
 
 #### 1.1 Implementation Details
 
-The feature is implemented through the `FilterCommand` and `FilterCommandParser` classes. The logic is designed to be case-insensitive and resilient to user input variations.
+The filter feature is implemented through a two-step process: parsing and execution. The `FilterCommandParser` first validates the input and prefix. Once created, the `FilterCommand` iterates through the `ApplicationList`, ignoring archived entries and matching the normalized status against the user's query.
 
 **1.1.1 Parsing Logic**
 The `FilterCommandParser#parse()` method handles the initial input processing:
@@ -403,9 +400,9 @@ The `FilterCommandParser#parse()` method handles the initial input processing:
 
 
 **Transition to Execution**
-The FilterCommandParser acts as a factory that translates raw user input into a configured FilterCommand object.
-This object encapsulates the validated status string (or the isClear flag), which is then passed to the main execution loop.
-This separation ensures that the FilterCommand itself does not need to know about the s/ prefix or raw string splitting, focusing purely on the filtering logic.
+The `FilterCommandParser` acts as a factory that translates raw user input into a configured `FilterCommand` object.
+This object encapsulates the validated status string (or the `isClear` flag), which is then passed to the main execution loop.
+This separation ensures that the `FilterCommand` itself does not need to know about the s/ prefix or raw string splitting, focusing purely on the filtering logic.
 
 **1.1.2 Execution Logic**
 When `FilterCommand#execute()` is called, it performs the following steps:
@@ -419,18 +416,21 @@ When `FilterCommand#execute()` is called, it performs the following steps:
 
 #### 1.2 Sequence Diagrams
 
-The diagram below illustrates the end-to-end interaction from user input to result display. It specifically highlights how `FilterCommand` interacts with the `Application` class to perform static validation and normalization before iterating through the `ApplicationList`.
-
-The following diagram details the internal logic within the `execute()` method, with the loop and the conditional checks for archived states and status matches.
+The command iterates through the ApplicationList. It skips archived entries and matches the "normalized" status (Title Case) to ensure consistency.
 
 ![Filter Parsing Sequence Diagram](images/EmryFilterCommandSequence.png)
+
+The filter command isolates applications by their current status (e.g., Applied, Interview). FilterCommandParser handles case-insensitivity and strips the s/ prefix.
+
 ![FilterCommandParser Sequence Diagram](images/EmryFilterParserSequence.png)
 
-The diagram below shows the internal logic of the `FilterCommand` during execution:
+### 1.3 Filter State Snapshot
 
-![Filter Execution Sequence Diagram](images/EmryFilterLogic.png)
+The following object diagram illustrates a scenario where a user filters for the "Applied" status. In this state, app1 is the only application that will be displayed because it matches the status and is not archived. app2 is excluded due to a status mismatch, and app3 is excluded because it is archived.
 
-#### 1.3 Design Considerations
+![Filter Object Diagram](images/EmryFilterObject.png)
+
+#### 1.4 Design Considerations
 
 **Aspect: Normalization vs. Literal Matching**
 * **Alternative 1**: Match the user's input exactly against the stored data.
@@ -453,6 +453,9 @@ The `status` command allows users to update the state of an existing internship 
 
 The `status` feature is handled by `StatusCommand` and `StatusCommandParser`, integrating directly with both the Model and Storage components.
 
+* **Validation**: Rejects empty statuses and enforces a strict whitelist (e.g., Pending, Offered) to keep the `Overview` analytics accurate.
+* **Persistence**: Triggers `Storage#save()` immediately after the update to prevent data loss if the user exits abruptly.
+
 **2.1.1 Parsing Logic**
 The `StatusCommandParser#parse()` method breaks down the complex command string:
 1.  **Delimiter Check**: It looks for the ` s/` prefix. If missing, it throws an error showing the `status INDEX s/STATUS` format.
@@ -469,11 +472,7 @@ The `StatusCommand#execute()` method follows a strict validation-then-update pip
 
 #### 2.2 Sequence Diagrams
 
-The following diagram shows the parsing logic for a status update:
-
-![Status Parsing Sequence Diagram](images/EmryStatusLogic.png)
-
-The diagram below illustrates how the command interacts with the Model and Storage components:
+The status command follows a strict validation-then-update pipeline. It ensures the index is within bounds and the status is valid before updating the model and triggering an immediate save to `Storage`. This process is captured in the execution diagram below:
 
 ![Status Execution Sequence Diagram](images/EmryStatusCommandSequence.png)
 
@@ -848,11 +847,19 @@ Reduces missed deadlines and confusion caused by scattered notes, emails, and me
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+* **Performance**: The application should be able to handle up to 1000 internship applications and their associated deadlines without any noticeable lag in command response time.
+* **Reliability (Data Integrity)**: The system must ensure that data is never lost during an abrupt exit; this is achieved by immediately saving to disk after any command that modifies the application state (e.g. `add`, `delete`, `status`, `offer`, `note`, `archive`).
+* **Portability**: The application should work on any mainstream OS with Java 17 installed.
+* **Efficiency**: A user who is a proficient typist should be able to manage their application list faster via the CLI than they could using a traditional GUI or spreadsheet.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Application* - A single entry in the tracker representing a specific internship role at a specific company.
+* *Status* - A predefined category representing the current stage of an internship (e.g., Applied, Pending, Interview, Offered, Rejected, Accepted).
+* *Archived Application* - An entry that has been hidden from the default list to reduce clutter but is still preserved in storage for historical reference.
+* *Deadline* - A specific milestone or task associated with an application, such as an Online Assessment (OA) or an interview date, which can be tracked independently.
+* *Normalization* - The internal process of converting user-inputted strings into a canonical Title Case format (e.g., converting "iNtErViEw" to "Interview") to ensure consistent filtering and display.
+* *Mainstream OS* - Windows, Linux, Unix, MacOS
 
 ## Instructions for manual testing
 
