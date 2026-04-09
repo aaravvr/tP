@@ -456,6 +456,9 @@ The `status` command allows users to update the state of an existing internship 
 
 The `status` feature is handled by `StatusCommand` and `StatusCommandParser`, integrating directly with both the Model and Storage components.
 
+* **Validation**: Rejects empty statuses and enforces a strict whitelist (e.g., Pending, Offered) to keep the `Overview` analytics accurate.
+* **Persistence**: Triggers `Storage#save()` immediately after the update to prevent data loss if the user exits abruptly.
+
 **2.1.1 Parsing Logic**
 The `StatusCommandParser#parse()` method breaks down the complex command string:
 1.  **Delimiter Check**: It looks for the ` s/` prefix. If missing, it throws an error showing the `status INDEX s/STATUS` format.
@@ -472,11 +475,7 @@ The `StatusCommand#execute()` method follows a strict validation-then-update pip
 
 #### 2.2 Sequence Diagrams
 
-The following diagram shows the parsing logic for a status update:
-
-![Status Parsing Sequence Diagram](images/EmryStatusLogic.png)
-
-The diagram below illustrates how the command interacts with the Model and Storage components:
+The status command follows a strict validation-then-update pipeline. It ensures the index is within bounds and the status is valid before updating the model and triggering an immediate save to `Storage`. This process is captured in the execution diagram below:
 
 ![Status Execution Sequence Diagram](images/EmryStatusCommandSequence.png)
 
